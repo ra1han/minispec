@@ -1,16 +1,14 @@
 ---
-description: 'Executes implementation plans from .copilot-tracking/plans with progressive tracking and change records'
-maturity: stable
+description: 'Executes implementation plans with progressive tracking and change records'
 handoffs:
   - label: "✅ Review"
-    agent: task-reviewer
-    prompt: /task-review
-    send: true
+    agent: reviewer
+    prompt: /review
 ---
 
 # Implementation Plan Executor
 
-Executes implementation plan instructions located in `.copilot-tracking/plans/**` by dispatching subagents for each phase. Progress is tracked in matching change logs at `.copilot-tracking/changes/**`.
+Executes implementation plan instructions located in `plans/**` by dispatching subagents for each phase. Progress is tracked in matching change logs at `changes/**`.
 
 ## Subagent Architecture
 
@@ -29,16 +27,16 @@ When the implementation plan indicates phases can be parallelized (marked with `
 
 ### Inline Research
 
-When subagents need additional context, use these tools: `semantic_search`, `grep_search`, `read_file`, `list_dir`, `fetch_webpage`, `github_repo`, and MCP documentation tools. Write findings to `.copilot-tracking/subagent/{{YYYY-MM-DD}}/<topic>-research.md`.
+When subagents need additional context, use these tools: `semantic_search`, `grep_search`, `read_file`, `list_dir`, `fetch_webpage`, `github_repo`, and MCP documentation tools. Write findings to `subagent/{{YYYY-MM-DD}}/<topic>-research.md`.
 
 ## Required Artifacts
 
 | Artifact | Path Pattern | Required |
 |----------|--------------|----------|
-| Implementation Plan | `.copilot-tracking/plans/<date>-<description>-plan.instructions.md` | Yes |
-| Implementation Details | `.copilot-tracking/details/<date>-<description>-details.md` | Yes |
-| Research | `.copilot-tracking/research/<date>-<description>-research.md` | No |
-| Changes Log | `.copilot-tracking/changes/<date>-<description>-changes.md` | Yes |
+| Implementation Plan | `plans/<date>-<description>-plan.instructions.md` | Yes |
+| Implementation Details | `details/<date>-<description>-details.md` | Yes |
+| Research | `research/<date>-<description>-research.md` | No |
+| Changes Log | `changes/<date>-<description>-changes.md` | Yes |
 
 Reference relevant guidance in `.github/instructions/**` before editing code. Dispatch subagents for inline research when context is missing.
 
@@ -113,8 +111,8 @@ When pausing or completing implementation:
 
 * Present phase and step completion summary in a table.
 * Include any outstanding clarification requests or blockers.
-* Provide commit message in a markdown code block following [commit-message.instructions.md](../instructions/commit-message.instructions.md). Exclude files in `.copilot-tracking` from the commit message.
-* Provide numbered handoff steps to invoke `/task-review`.
+* Provide commit message in a markdown code block. Exclude tracking files (`plans/`, `details/`, `changes/`, `reviews/`, `subagent/`) from the commit message.
+* Provide numbered handoff steps to invoke `/review`.
 
 ### Phase 5: Completion Checks
 
@@ -140,8 +138,8 @@ When implementation completes, provide a structured handoff:
 ### Ready for Review
 
 1. Clear context by typing `/clear`.
-2. Attach or open [{{YYYY-MM-DD}}-{{task}}-changes.md](../../.copilot-tracking/changes/{{YYYY-MM-DD}}-{{task}}-changes.md).
-3. Start reviewing by typing `/task-review`.
+2. Attach or open the changes log: `changes/<YYYY-MM-DD>-<task>-changes.md`
+3. Start reviewing by typing `/review`.
 
 ## Implementation Standards
 
@@ -165,7 +163,7 @@ Constraints:
 
 Keep the changes file chronological. Add entries under the appropriate change category after each step completion. Include links to supporting research excerpts when they inform implementation decisions.
 
-Changes file naming: `{{YYYY-MM-DD}}-task-description-changes.md` in `.copilot-tracking/changes/`. Begin each file with `<!-- markdownlint-disable-file -->`.
+Changes file naming: `{{YYYY-MM-DD}}-task-description-changes.md` in `changes/`. Begin each file with `<!-- markdownlint-disable-file -->`.
 
 Changes file structure:
 
