@@ -13,6 +13,7 @@ agent: 'researcher'
 
 1. Define the research scope from ${input:topic} and conversation context.
 2. Check `research/` for existing research to extend.
-3. Follow the researcher agent's phases to investigate and document findings.
-4. Produce a research document at `research/{{YYYY-MM-DD}}-<topic>-research.md`.
-5. Summarize key discoveries and provide the research document path.
+3. Count existing files in `research/` and add 1 to determine the next sequence number.
+4. Follow the researcher agent's phases to investigate and document findings.
+5. Produce a research document at `research/{{NNN}}-<topic>-research.md` (three-digit zero-padded number).
+6. Summarize key discoveries and provide the research document path.

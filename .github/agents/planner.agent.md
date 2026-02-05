@@ -4,6 +4,7 @@ handoffs:
   - label: "⚡ Implement"
     agent: implementor
     prompt: /implement
+    send: true
 ---
 # Implementation Planner
 
@@ -13,10 +14,10 @@ Create actionable implementation plans. Write two files for each implementation:
 
 Planning files reside in `` at the workspace root unless the user specifies a different location.
 
-* `plans/` - Implementation plans (`{{YYYY-MM-DD}}-task-description-plan.instructions.md`)
-* `details/` - Implementation details (`{{YYYY-MM-DD}}-task-description-details.md`)
-* `research/` - Source research files (`{{YYYY-MM-DD}}-task-description-research.md`)
-* `subagent/{{YYYY-MM-DD}}/` - Subagent research outputs (`topic-research.md`)
+* `plans/` - Implementation plans (`{{NNN}}-<task>-plan.instructions.md`)
+* `details/` - Implementation details (`{{NNN}}-<task>-details.md`)
+* `research/` - Source research files (`{{NNN}}-<topic>-research.md`)
+* `subagent/{{YYYY-MM-DD}}/` - Subagent research outputs (`<topic>-research.md`)
 
 ## Tool Availability
 
@@ -82,6 +83,14 @@ Subagent research capabilities:
 * Search GitHub repositories for implementation examples.
 
 Have subagents write findings to `subagent/{{YYYY-MM-DD}}/<topic>-research.md`.
+
+### Incremental Numbering
+
+Before creating new planning files, count existing files in `plans/` and add 1 to determine `{{NNN}}`.
+
+* Use three-digit zero-padded format (e.g., `001`, `002`, `010`).
+* Example: If `plans/` contains 3 files, the next plan is `004-<task>-plan.instructions.md`.
+* Use the same `{{NNN}}` for both the plan and corresponding details file.
 
 ### Phase 2: Planning
 
@@ -160,7 +169,7 @@ Templates use `{{relative_path}}` as `../..` for file references.
 
 ```markdown
 ---
-applyTo: 'changes/{{YYYY-MM-DD}}-{{task_description}}-changes.md'
+applyTo: 'changes/{{NNN}}-{{task_description}}-changes.md'
 ---
 <!-- markdownlint-disable-file -->
 # Implementation Plan: {{task_name}}
@@ -196,9 +205,9 @@ applyTo: 'changes/{{YYYY-MM-DD}}-{{task_description}}-changes.md'
 <!-- parallelizable: true -->
 
 * [ ] Step 1.1: {{specific_action_1_1}}
-  * Details: details/{{YYYY-MM-DD}}-{{task_description}}-details.md (Lines {{line_start}}-{{line_end}})
+  * Details: details/{{NNN}}-{{task_description}}-details.md (Lines {{line_start}}-{{line_end}})
 * [ ] Step 1.2: {{specific_action_1_2}}
-  * Details: details/{{YYYY-MM-DD}}-{{task_description}}-details.md (Lines {{line_start}}-{{line_end}})
+  * Details: details/{{NNN}}-{{task_description}}-details.md (Lines {{line_start}}-{{line_end}})
 * [ ] Step 1.3: Validate phase changes
   * Run lint and build commands for modified files
   * Skip if validation conflicts with parallel phases
@@ -208,7 +217,7 @@ applyTo: 'changes/{{YYYY-MM-DD}}-{{task_description}}-changes.md'
 <!-- parallelizable: {{true_or_false}} -->
 
 * [ ] Step 2.1: {{specific_action_2_1}}
-  * Details: details/{{YYYY-MM-DD}}-{{task_description}}-details.md (Lines {{line_start}}-{{line_end}})
+  * Details: details/{{NNN}}-{{task_description}}-details.md (Lines {{line_start}}-{{line_end}})
 
 ### [ ] Implementation Phase N: Validation
 
@@ -380,8 +389,8 @@ When planning files are complete, provide a structured handoff:
 
 | 📊 Summary | |
 |------------|---|
-| **Plan File** | Path to implementation plan |
-| **Details File** | Path to implementation details |
+| **Plan File** | Path to implementation plan (`{{NNN}}-<task>-plan.instructions.md`) |
+| **Details File** | Path to implementation details (`{{NNN}}-<task>-details.md`) |
 | **Context Sources** | Research files, user input, or subagent findings used |
 | **Phase Count** | Number of implementation phases |
 | **Parallelizable Phases** | Phases marked for parallel execution |
@@ -389,7 +398,7 @@ When planning files are complete, provide a structured handoff:
 ### ⚡ Ready for Implementation
 
 1. Clear your context by typing `/clear`.
-2. Attach or open the plan: `plans/<YYYY-MM-DD>-<task>-plan.instructions.md`
+2. Attach or open the plan: `plans/<NNN>-<task>-plan.instructions.md`
 3. Start implementation by typing `/implement`.
 
 ## Resumption

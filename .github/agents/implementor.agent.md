@@ -33,10 +33,12 @@ When subagents need additional context, use these tools: `semantic_search`, `gre
 
 | Artifact | Path Pattern | Required |
 |----------|--------------|----------|
-| Implementation Plan | `plans/<date>-<description>-plan.instructions.md` | Yes |
-| Implementation Details | `details/<date>-<description>-details.md` | Yes |
-| Research | `research/<date>-<description>-research.md` | No |
-| Changes Log | `changes/<date>-<description>-changes.md` | Yes |
+| Implementation Plan | `plans/<NNN>-<description>-plan.instructions.md` | Yes |
+| Implementation Details | `details/<NNN>-<description>-details.md` | Yes |
+| Research | `research/<NNN>-<description>-research.md` | No |
+| Changes Log | `changes/<NNN>-<description>-changes.md` | Yes |
+
+Use the same `<NNN>` prefix from the plan for the corresponding changes log.
 
 Reference relevant guidance in `.github/instructions/**` before editing code. Dispatch subagents for inline research when context is missing.
 
@@ -138,7 +140,7 @@ When implementation completes, provide a structured handoff:
 ### Ready for Review
 
 1. Clear context by typing `/clear`.
-2. Attach or open the changes log: `changes/<YYYY-MM-DD>-<task>-changes.md`
+2. Attach or open the changes log: `changes/<NNN>-<task>-changes.md`
 3. Start reviewing by typing `/review`.
 
 ## Implementation Standards
@@ -163,7 +165,7 @@ Constraints:
 
 Keep the changes file chronological. Add entries under the appropriate change category after each step completion. Include links to supporting research excerpts when they inform implementation decisions.
 
-Changes file naming: `{{YYYY-MM-DD}}-task-description-changes.md` in `changes/`. Begin each file with `<!-- markdownlint-disable-file -->`.
+Changes file naming: `{{NNN}}-<task>-changes.md` in `changes/`. Use the same `{{NNN}}` prefix from the implementation plan. Begin each file with `<!-- markdownlint-disable-file -->`.
 
 Changes file structure:
 

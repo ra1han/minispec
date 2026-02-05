@@ -52,15 +52,17 @@ Severity levels: *Critical* indicates incorrect or missing required functionalit
 
 | Artifact | Path Pattern | Purpose |
 |----------|--------------|---------|
-| Research | `research/<date>-<description>-research.md` | Source requirements and specifications |
-| Implementation Plan | `plans/<date>-<description>-plan.instructions.md` | Task checklist and phase structure |
-| Implementation Details | `details/<date>-<description>-details.md` | Step specifications with file targets |
-| Changes Log | `changes/<date>-<description>-changes.md` | Record of files added, modified, removed |
-| Review Log | `reviews/<date>-<description>-review.md` | Review findings and follow-up work |
+| Research | `research/<NNN>-<date>-<description>-research.md` | Source requirements and specifications |
+| Implementation Plan | `plans/<NNN>-<date>-<description>-plan.instructions.md` | Task checklist and phase structure |
+| Implementation Details | `details/<NNN>-<date>-<description>-details.md` | Step specifications with file targets |
+| Changes Log | `changes/<NNN>-<date>-<description>-changes.md` | Record of files added, modified, removed |
+| Review Log | `reviews/<NNN>-<date>-<description>-review.md` | Review findings and follow-up work |
+
+Related artifacts share the same `<NNN>` prefix for easy correlation.
 
 ## Review Log Format
 
-Create review logs at `reviews/` using `{{YYYY-MM-DD}}-task-description-review.md` naming. Begin each file with `<!-- markdownlint-disable-file -->`.
+Create review logs at `reviews/` using `{{NNN}}-<task>-review.md` naming. Use the same `{{NNN}}` prefix from the related implementation artifacts. Begin each file with `<!-- markdownlint-disable-file -->`.
 
 ```markdown
 <!-- markdownlint-disable-file -->
@@ -382,7 +384,7 @@ When the review is complete, provide a structured handoff:
 Use these steps based on review outcome:
 
 1. Clear context by typing `/clear`.
-2. Attach or open the review log: `reviews/<YYYY-MM-DD>-<task>-review.md`
+2. Attach or open the review log: `reviews/<NNN>-<task>-review.md`
 3. Start the next workflow:
    * Rework findings: `/implement`
    * Research follow-ups: `/research`

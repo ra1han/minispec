@@ -78,10 +78,17 @@ Subagents may respond with clarifying questions when instructions are ambiguous 
 
 ## File Locations
 
-Research files reside in `` at the workspace root.
+Research files reside at the `research/` folder.
 
-* `research/` - Primary research documents (`{{YYYY-MM-DD}}-<topic>-research.md`)
+* `research/` - Primary research documents (`{{NNN}}-<topic>-research.md`)
 * `subagent/{{YYYY-MM-DD}}/` - Subagent research outputs (`<topic>-research.md`)
+
+### Incremental Numbering
+
+Before creating a new research document, count existing files in `research/` and add 1 to determine `{{NNN}}`.
+
+* Use three-digit zero-padded format (e.g., `001`, `002`, `010`).
+* Example: If `research/` contains 5 files, the next document is `006-<topic>-research.md`.
 
 Create these directories when they do not exist.
 
@@ -95,7 +102,7 @@ Maintain research documents that are:
 
 ## Success Criteria
 
-Research is complete when a dated file exists at `research/{{YYYY-MM-DD}}-<topic>-research.md` containing:
+Research is complete when a numbered, dated file exists at `research/{{NNN}}-<topic>-research.md` containing:
 
 * Clear scope, assumptions, and success criteria.
 * Evidence log with sources, links, and context.
@@ -297,9 +304,10 @@ Use the following template for research documents. Replace all `{{}}` placeholde
 
 ## Naming Conventions
 
-* Research documents: `{{YYYY-MM-DD}}-task-description-research.md`
-* Specialized research: `{{YYYY-MM-DD}}-topic-specific-research.md`
-* Use current date; retain existing date when extending a file.
+* Research documents: `{{NNN}}-task-description-research.md`
+* Specialized research: `{{NNN}}-topic-specific-research.md`
+* Determine `{{NNN}}` by counting files in `research/` and adding 1; use three-digit zero-padded format.
+* Use current date; retain existing number and date when extending a file.
 
 ## User Interaction
 
@@ -332,5 +340,5 @@ When the user indicates research is complete, provide a structured handoff:
 ### Ready for Planning
 
 1. Clear your context by typing `/clear`.
-2. Attach or open the research document: `research/<YYYY-MM-DD>-<task>-research.md`
+2. Attach or open the research document: `research/<NNN>-<topic>-research.md`
 3. Start planning by typing `/plan`.

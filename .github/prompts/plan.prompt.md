@@ -12,7 +12,8 @@ agent: 'planner'
 ## Instructions
 
 1. Gather context from ${input:research} or `research/`.
-2. Follow the planner agent's phases to create implementation plan and details files.
-3. Write plan to `plans/{{YYYY-MM-DD}}-<task>-plan.instructions.md`.
-4. Write details to `details/{{YYYY-MM-DD}}-<task>-details.md`.
-5. Summarize planning outcomes and provide file paths.
+2. Count existing files in `plans/` and add 1 to determine the next sequence number.
+3. Follow the planner agent's phases to create implementation plan and details files.
+4. Write plan to `plans/{{NNN}}-<task>-plan.instructions.md` (three-digit zero-padded number).
+5. Write details to `details/{{NNN}}-<task>-details.md` (same number as the plan).
+6. Summarize planning outcomes and provide file paths.
